@@ -11,6 +11,5 @@ if (!game) {
 }
 
 require('babel-polyfill');
-require('babel-core/register');
 
-require(__dirname + '/' + game);
+require(__dirname + '/build/' + game);
