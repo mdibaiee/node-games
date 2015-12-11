@@ -3,6 +3,8 @@
 var game = process.argv[2];
 
 if (!game) {
+  console.log('usage: node-games <game>')
+  console.log('');
   console.log('Games');
   console.log('- spacecraft');
   return;
