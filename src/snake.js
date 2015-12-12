@@ -3,8 +3,6 @@ import Interface from './classes/interface';
 import fs from 'fs';
 
 let FRAME = 100;
-loop();
-
 let ui = new Interface();
 
 let snake = [];

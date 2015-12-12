@@ -17,8 +17,6 @@ var _fs2 = _interopRequireDefault(_fs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FRAME = 100;
-loop();
-
 var ui = new _interface2.default();
 
 var snake = [];

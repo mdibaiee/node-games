@@ -1,6 +1,6 @@
 {
   "name": "node-games",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simple node console games",
   "main": "index.js",
   "scripts": {
