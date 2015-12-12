@@ -2,9 +2,8 @@ import Unit from './classes/unit';
 import Interface from './classes/interface';
 import fs from 'fs';
 
-let log = fs.createWriteStream(__dirname + '/log');
-
 let FRAME = 100;
+loop();
 
 let ui = new Interface();
 
@@ -165,5 +164,4 @@ function gameover() {
 process.on('exit', function() {
   ui.cursor.horizontalAbsolute(0).eraseLine()
   ui.cursor.show();
-  log.end();
 });

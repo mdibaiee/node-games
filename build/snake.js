@@ -16,9 +16,8 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var log = _fs2.default.createWriteStream(__dirname + '/log');
-
 var FRAME = 100;
+loop();
 
 var ui = new _interface2.default();
 
@@ -185,5 +184,4 @@ function gameover() {
 process.on('exit', function () {
   ui.cursor.horizontalAbsolute(0).eraseLine();
   ui.cursor.show();
-  log.end();
 });
