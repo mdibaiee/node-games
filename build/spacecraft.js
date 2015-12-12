@@ -11,15 +11,17 @@ var _interface2 = _interopRequireDefault(_interface);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FRAME = 20;
-var ENEMY_SPAWN_RATE = 400;
+var ENEMY_SPAWN_RATE = 1000;
+var RELOAD_TIME = 200;
 
 var ui = new _interface2.default();
 
 var player = new _unit2.default(ui);
-player.go(1, ui.output.rows / 2);
+player.go(1, ui.center.y);
 player.shape = '=>';
 player.color = '#77d6ff';
 player.bold = true;
+player.canShoot = true;
 
 var explosion = new _unit2.default(ui);
 explosion.dead = true;
@@ -42,6 +44,8 @@ setInterval(function () {
       enemy.color = 'red';
       enemy.shape = '*';
       missle.dead = true;
+
+      ENEMY_SPAWN_RATE -= 5;
 
       score++;
     }
@@ -80,18 +84,25 @@ ui.onKey('up', function () {
 ui.onKey('left', function () {
   player.move(-1, 0);
 });
+
 ui.onKey('space', function () {
+  if (!player.canShoot) return;
+
+  player.canShoot = false;
+
   var missle = new _unit2.default(ui);
   missle.go(player.x, player.y);
   missle.shape = '+';
   missle.dieOnExit = true;
 
   missles.push(missle);
+
+  setTimeout(function () {
+    player.canShoot = true;
+  }, RELOAD_TIME);
 });
 
-setInterval(function () {
-  if (enemies.length > 5) return;
-
+(function loop() {
   var enemy = new _unit2.default(ui);
   enemy.go(Math.random() * ui.output.columns, 0);
   enemy.shape = 'o';
@@ -103,7 +114,9 @@ setInterval(function () {
   };
 
   enemies.push(enemy);
-}, 1000);
+
+  setTimeout(loop, ENEMY_SPAWN_RATE);
+})();
 
 process.on('exit', function () {
   ui.cursor.horizontalAbsolute(0).eraseLine();

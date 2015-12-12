@@ -55,6 +55,12 @@ var Unit = (function () {
       this.y = y;
     }
   }, {
+    key: 'random',
+    value: function random() {
+      this.x = Math.max(1, Math.floor(Math.random() * this.output.columns));
+      this.y = Math.max(1, Math.floor(Math.random() * this.output.rows));
+    }
+  }, {
     key: 'speed',
     value: function speed() {
       var signs = [Math.random() > 0.5 ? -1 : 1, Math.random() > 0.5 ? -1 : 1];

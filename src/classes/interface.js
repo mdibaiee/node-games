@@ -23,10 +23,13 @@ export default class Interface {
 
     this.cursor = ansi(this.output).hide();
 
-    this.columns = this.output.columns;
-    this.rows = this.output.rows;
-
     this.input.addListener('data', data => {
+      let always = listeners.filter(listener => {
+        return listener.key === '';
+      });
+
+      always.forEach(listener => listener.fn());
+
       let key = Object.keys(keys).find((value, i) => {
         return keys[value] === data;
       });
@@ -41,6 +44,14 @@ export default class Interface {
     })
   }
 
+  get columns() {
+    return this.output.columns;
+  }
+
+  get rows() {
+    return this.output.rows;
+  }
+
   clear() {
     this.output.write('\u001b[2J\u001b[0;0H');
   }
@@ -50,6 +61,17 @@ export default class Interface {
   }
 
   onKey(key, fn) {
+    if (typeof key === 'function') {
+      fn = key;
+      key = '';
+    }
     listeners.push({ key, fn });
+  }
+
+  get center() {
+    return {
+      x: this.output.columns / 2,
+      y: this.output.rows / 2
+    }
   }
 }

@@ -45,10 +45,15 @@ var Interface = (function () {
 
     this.cursor = (0, _ansi2.default)(this.output).hide();
 
-    this.columns = this.output.columns;
-    this.rows = this.output.rows;
-
     this.input.addListener('data', function (data) {
+      var always = listeners.filter(function (listener) {
+        return listener.key === '';
+      });
+
+      always.forEach(function (listener) {
+        return listener.fn();
+      });
+
       var key = Object.keys(keys).find(function (value, i) {
         return keys[value] === data;
       });
@@ -80,7 +85,29 @@ var Interface = (function () {
   }, {
     key: 'onKey',
     value: function onKey(key, fn) {
+      if (typeof key === 'function') {
+        fn = key;
+        key = '';
+      }
       listeners.push({ key: key, fn: fn });
+    }
+  }, {
+    key: 'columns',
+    get: function get() {
+      return this.output.columns;
+    }
+  }, {
+    key: 'rows',
+    get: function get() {
+      return this.output.rows;
+    }
+  }, {
+    key: 'center',
+    get: function get() {
+      return {
+        x: this.output.columns / 2,
+        y: this.output.rows / 2
+      };
     }
   }]);
 

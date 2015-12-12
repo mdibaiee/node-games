@@ -2,15 +2,17 @@ import Unit from './classes/unit';
 import Interface from './classes/interface';
 
 const FRAME = 20;
-const ENEMY_SPAWN_RATE = 400;
+let ENEMY_SPAWN_RATE = 1000;
+let RELOAD_TIME = 200;
 
 let ui = new Interface();
 
 let player = new Unit(ui);
-player.go(1, ui.output.rows / 2);
+player.go(1, ui.center.y);
 player.shape = '=>';
 player.color = '#77d6ff';
 player.bold = true;
+player.canShoot = true;
 
 let explosion = new Unit(ui);
 explosion.dead = true;
@@ -33,6 +35,8 @@ setInterval(() => {
       enemy.color = 'red';
       enemy.shape = '*';
       missle.dead = true;
+
+      ENEMY_SPAWN_RATE -= 5;
 
       score++;
     }
@@ -72,18 +76,25 @@ ui.onKey('up', () => {
 ui.onKey('left', () => {
   player.move(-1, 0);
 });
+
 ui.onKey('space', () => {
+  if (!player.canShoot) return;
+
+  player.canShoot = false;
+
   let missle = new Unit(ui);
   missle.go(player.x, player.y);
   missle.shape = '+';
   missle.dieOnExit = true;
 
   missles.push(missle);
+
+  setTimeout(() => {
+    player.canShoot = true;
+  }, RELOAD_TIME)
 });
 
-setInterval(() => {
-  if (enemies.length > 5) return;
-
+(function loop() {
   let enemy = new Unit(ui);
   enemy.go(Math.random() * ui.output.columns, 0);
   enemy.shape = 'o';
@@ -95,7 +106,9 @@ setInterval(() => {
   }
 
   enemies.push(enemy);
-}, 1000);
+
+  setTimeout(loop, ENEMY_SPAWN_RATE);
+}());
 
 process.on('exit', function() {
   ui.cursor.horizontalAbsolute(0).eraseLine()

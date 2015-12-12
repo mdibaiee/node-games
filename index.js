@@ -7,6 +7,7 @@ if (!game) {
   console.log('');
   console.log('Games');
   console.log('- spacecraft');
+  console.log('- snake');
   return;
 }
 

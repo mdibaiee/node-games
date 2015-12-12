@@ -71,6 +71,11 @@ export default class Unit {
     this.y = y;
   }
 
+  random() {
+    this.x = Math.max(1, Math.floor(Math.random() * this.output.columns));
+    this.y = Math.max(1, Math.floor(Math.random() * this.output.rows));
+  }
+
   speed() {
     let signs = [Math.random() > 0.5 ? -1 : 1, Math.random() > 0.5 ? -1 : 1];
     return [Math.random() * signs[0], Math.random() * signs[1]];
