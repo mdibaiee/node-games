@@ -11,7 +11,7 @@ node-games
 
 spacecraft
 ----------
-![spacecraft](https://raw.githubusercontent.com/mdibaiee/node-games/master/spacecraft.png)
+![spacecraft](https://raw.githubusercontent.com/mdibaiee/node-games/master/spacecraft.gif)
 
 snake
 -----
