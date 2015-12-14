@@ -43,7 +43,7 @@ function loop() {
     createPart();
     score++;
 
-    FRAME--;
+    FRAME -= 5;
   }
 
   if (head.collides(snake.slice(2))) {
@@ -89,6 +89,10 @@ ui.onKey(() => {
 })
 
 function changeDirection(dir) {
+  if (head.direction === UP && dir === DOWN ||
+      head.direction === DOWN && dir === UP ||
+      head.direction === LEFT && dir === RIGHT ||
+      head.direction === RIGHT && dir === LEFT) return;
   head.direction = dir;
 }
 
@@ -155,6 +159,8 @@ function gameover() {
   const RETRY = 'Press any key to play again';
   ui.cursor.goto(ui.center.x - RETRY.length / 2, ui.center.y + 2);
   ui.write(RETRY);
+
+  FRAME = 100;
 
   stop = true;
 }
