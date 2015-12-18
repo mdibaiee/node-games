@@ -74,4 +74,31 @@ export default class Interface {
       y: this.output.rows / 2
     }
   }
+
+  line(from, to) {
+    let delta = {
+      x: to.x - from.x,
+      y: to.y - from.y
+    }
+
+    let error = 0;
+
+    let deltaerr = Math.abs(delta.y / delta.x);
+
+    let { y } = from;
+
+    for (let x = from.x; x < to.x; x++) {
+      this.cursor.goto(x, y);
+      this.write('.');
+      error += deltaerr;
+
+      while (error >= 0.5) {
+        this.cursor.goto(x, y);
+        this.write('.');
+        y += Math.sign(delta.y);
+
+        error -= 1;
+      }
+    }
+  }
 }

@@ -92,6 +92,34 @@ var Interface = (function () {
       listeners.push({ key: key, fn: fn });
     }
   }, {
+    key: 'line',
+    value: function line(from, to) {
+      var delta = {
+        x: to.x - from.x,
+        y: to.y - from.y
+      };
+
+      var error = 0;
+
+      var deltaerr = Math.abs(delta.y / delta.x);
+
+      var y = from.y;
+
+      for (var x = from.x; x < to.x; x++) {
+        this.cursor.goto(x, y);
+        this.write('.');
+        error += deltaerr;
+
+        while (error >= 0.5) {
+          this.cursor.goto(x, y);
+          this.write('.');
+          y += Math.sign(delta.y);
+
+          error -= 1;
+        }
+      }
+    }
+  }, {
     key: 'columns',
     get: function get() {
       return this.output.columns;

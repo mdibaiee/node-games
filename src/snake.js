@@ -1,6 +1,5 @@
 import Unit from './classes/unit';
 import Interface from './classes/interface';
-import fs from 'fs';
 
 let FRAME = 100;
 let ui = new Interface();

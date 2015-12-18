@@ -16,3 +16,7 @@ spacecraft
 snake
 -----
 ![snake](https://raw.githubusercontent.com/mdibaiee/node-games/master/snake.gif)
+
+tanks
+-----
+![tanks](https://raw.githubusercontent.com/mdibaiee/node-games/master/tanks.gif)

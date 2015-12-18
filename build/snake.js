@@ -10,10 +10,6 @@ var _interface = require('./classes/interface');
 
 var _interface2 = _interopRequireDefault(_interface);
 
-var _fs = require('fs');
-
-var _fs2 = _interopRequireDefault(_fs);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FRAME = 100;

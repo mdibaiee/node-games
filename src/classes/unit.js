@@ -8,7 +8,7 @@ export default class Unit {
   }
 
   set health(value) {
-    this._health = Math.min(0, value);
+    this._health = Math.max(0, value);
 
     if (this.health === 0) {
       this.dead = true;
