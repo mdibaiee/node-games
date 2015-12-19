@@ -11,10 +11,6 @@ var _unit = require('./unit');
 
 var _unit2 = _interopRequireDefault(_unit);
 
-var _fs = require('fs');
-
-var _fs2 = _interopRequireDefault(_fs);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22,14 +18,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var log = function log() {
-  for (var _len = arguments.length, strings = Array(_len), _key = 0; _key < _len; _key++) {
-    strings[_key] = arguments[_key];
-  }
-
-  _fs2.default.appendFileSync(__dirname + '/../log', strings.join(' ') + '\n');
-};
 
 var BULLET_SPEED = 10;
 
@@ -55,8 +43,6 @@ var Tank = (function (_Unit) {
       var bullet = new Bullet(this.output);
       bullet.go(this.x + 2, this.y - 2);
       bullet.velocity = this.normalize();
-
-      log(this.angle, '(' + this._angle + ') =', bullet.velocity.join(','));
 
       this.bullets.push(bullet);
     }

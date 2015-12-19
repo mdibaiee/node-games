@@ -1,9 +1,4 @@
 import Unit from './unit';
-import fs from 'fs';
-
-let log = (...strings) => {
-  fs.appendFileSync(__dirname + '/../log', strings.join(' ') + '\n');
-}
 
 const BULLET_SPEED = 10;
 
@@ -33,8 +28,6 @@ export default class Tank extends Unit {
     let bullet = new Bullet(this.output);
     bullet.go(this.x + 2, this.y - 2);
     bullet.velocity = this.normalize();
-
-    log(this.angle, '(' + this._angle + ') =', bullet.velocity.join(','));
 
     this.bullets.push(bullet);
   }
