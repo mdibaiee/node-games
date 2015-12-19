@@ -8,6 +8,7 @@ if (!game) {
   console.log('Games');
   console.log('- spacecraft');
   console.log('- snake');
+  console.log('- tanks');
   return;
 }
 
