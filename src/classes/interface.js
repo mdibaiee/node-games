@@ -34,7 +34,10 @@ export default class Interface {
         return keys[value] === data;
       });
 
-      if ( key === 'exit' ) process.exit();
+      if ( key === 'exit' ) {
+				this.output.write('\u001b[2J\u001b[0;0H');
+				process.exit();
+			}
 
       let match = listeners.filter(listener => {
         return listener.key === key || listener.key === data;

@@ -32,6 +32,8 @@ var keys = {
 
 var Interface = (function () {
   function Interface() {
+    var _this = this;
+
     var output = arguments.length <= 0 || arguments[0] === undefined ? stdout : arguments[0];
     var input = arguments.length <= 1 || arguments[1] === undefined ? stdin : arguments[1];
 
@@ -58,7 +60,10 @@ var Interface = (function () {
         return keys[value] === data;
       });
 
-      if (key === 'exit') process.exit();
+      if (key === 'exit') {
+        _this.output.write('\u001b[2J\u001b[0;0H');
+        process.exit();
+      }
 
       var match = listeners.filter(function (listener) {
         return listener.key === key || listener.key === data;
