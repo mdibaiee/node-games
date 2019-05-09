@@ -9,6 +9,17 @@ npm i -g node-games
 node-games
 ```
 
+language
+--------
+
+In order to select another language you can specify it from the command line:
+
+```
+node-games <game_name> <language>
+```
+
+Available languages: es, en.
+
 spacecraft
 ----------
 ![spacecraft](https://raw.githubusercontent.com/mdibaiee/node-games/master/spacecraft.gif)

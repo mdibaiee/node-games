@@ -1,11 +1,11 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Bullet = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _unit = require('./unit');
 
@@ -21,13 +21,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var BULLET_SPEED = 10;
 
-var Tank = (function (_Unit) {
+var Tank = function (_Unit) {
   _inherits(Tank, _Unit);
 
   function Tank(ui) {
     _classCallCheck(this, Tank);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Tank).call(this, ui));
+    var _this = _possibleConstructorReturn(this, (Tank.__proto__ || Object.getPrototypeOf(Tank)).call(this, ui));
 
     _this._angle = 0;
     _this.bullets = [];
@@ -51,8 +51,8 @@ var Tank = (function (_Unit) {
     value: function draw() {
       if (this.dead) return;
 
-      var x = this.x;
-      var y = this.y;
+      var x = this.x,
+          y = this.y;
 
       if (this.color && this.color[0] === '#') {
         this.output.cursor.hex(this.color);
@@ -64,7 +64,7 @@ var Tank = (function (_Unit) {
       x = Math.round(x) + 2;
       y = Math.round(y) - 2;
 
-      var cannon = undefined;
+      var cannon = void 0;
       if (this.angle < 35) cannon = '_';else if (this.angle < 70) cannon = '/';else if (this.angle < 115) cannon = '|';else if (this.angle < 160) cannon = '\\';else cannon = '_';
 
       this.output.cursor.goto(x + 2, y - 2);
@@ -104,17 +104,17 @@ var Tank = (function (_Unit) {
   }]);
 
   return Tank;
-})(_unit2.default);
+}(_unit2.default);
 
 exports.default = Tank;
 
-var Bullet = exports.Bullet = (function (_Unit2) {
+var Bullet = exports.Bullet = function (_Unit2) {
   _inherits(Bullet, _Unit2);
 
   function Bullet(ui) {
     _classCallCheck(this, Bullet);
 
-    var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Bullet).call(this, ui));
+    var _this2 = _possibleConstructorReturn(this, (Bullet.__proto__ || Object.getPrototypeOf(Bullet)).call(this, ui));
 
     _this2.velocity = [0, 0];
 
@@ -151,7 +151,7 @@ var Bullet = exports.Bullet = (function (_Unit2) {
   }]);
 
   return Bullet;
-})(_unit2.default);
+}(_unit2.default);
 
 function _radian(deg) {
   return deg * Math.PI / 180;

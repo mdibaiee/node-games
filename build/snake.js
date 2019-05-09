@@ -1,6 +1,6 @@
 'use strict';
 
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _unit = require('./classes/unit');
 
@@ -60,7 +60,7 @@ function loop() {
     gameover();
   }
 
-  ui.cursor.goto(0, 0).yellow().write('Score: ' + score);
+  ui.cursor.goto(0, 0).yellow().write(i18n.__('Score') + ': ' + score);
   ui.cursor.reset();
 
   setTimeout(loop, FRAME);
@@ -107,7 +107,7 @@ function createPart() {
   var part = new _unit2.default(ui);
   var last = snake[snake.length - 1];
 
-  var direction = undefined;
+  var direction = void 0;
   if (!last) {
     direction = UP;
   } else {
@@ -132,7 +132,7 @@ function createPart() {
   };
 
   part.speed = function () {
-    var multiplier = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
+    var multiplier = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
     var direction = part.direction;
 
     var x = direction == LEFT ? -1 : direction == RIGHT ? 1 : 0;
@@ -141,12 +141,10 @@ function createPart() {
     return [x * multiplier, y * multiplier];
   };
 
-  var _part$speed = part.speed();
-
-  var _part$speed2 = _slicedToArray(_part$speed, 2);
-
-  var dX = _part$speed2[0];
-  var dY = _part$speed2[1];
+  var _part$speed = part.speed(),
+      _part$speed2 = _slicedToArray(_part$speed, 2),
+      dX = _part$speed2[0],
+      dY = _part$speed2[1];
 
   dX *= -1;
   dY *= -1;
@@ -161,7 +159,7 @@ function createPart() {
 }
 
 function gameover() {
-  var MSG = 'Game Over!';
+  var MSG = i18n.__('Game Over');
   ui.cursor.goto(ui.center.x - MSG.length / 2, ui.center.y);
   ui.cursor.red();
   ui.cursor.bold();
@@ -169,7 +167,7 @@ function gameover() {
 
   ui.cursor.reset();
   ui.cursor.hex('#f65590');
-  var RETRY = 'Press any key to play again';
+  var RETRY = i18n.__('Press any key to play again');
   ui.cursor.goto(ui.center.x - RETRY.length / 2, ui.center.y + 2);
   ui.write(RETRY);
 

@@ -68,7 +68,7 @@ setInterval(function () {
     if (enemy.killed < 3) enemy.killed++;
   });
 
-  ui.cursor.goto(0, 0).yellow().write('Score: ' + score);
+  ui.cursor.goto(0, 0).yellow().write(i18n.__('Score') + ': ' + score);
   ui.cursor.reset();
 }, FRAME);
 
