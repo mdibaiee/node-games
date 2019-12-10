@@ -2,7 +2,7 @@ node-games
 ==========
 
 Some fun console games written using Node.
-
+[![Run on Repl.it](https://repl.it/badge/github/mdibaiee/node-games)](https://repl.it/github/mdibaiee/node-games)
 ```
 npm i -g node-games
 
