@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "npm i babel-polyfill; npm i ansi; echo Which game do you want; echo spacecraft; echo snake; echo tanks; read game; echo what language; echo es or en; read lang; node index.js $game"
+run = "npm i; npm i babel-polyfill; npm i ansi; echo Which game do you want; echo spacecraft; echo snake; echo tanks; read game; echo what language; echo es or en; read lang; node index.js $game"
